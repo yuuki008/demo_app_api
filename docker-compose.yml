@@ -1,0 +1,39 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:alpine
+    container_name: mytrello_db
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+      - ./db/initdb:/docker-entrypoint-initdb.d
+      - ./tmp:/tmp
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_PRODUCTION_DB
+    ports:
+      - "5432"
+  web:
+    build: .
+    container_name: mytrello_app
+    working_dir: /myapp
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b 0.0.0.0 -p 8020"
+    ports:
+      - "8020:8020"
+    volumes:
+      - .:/myapp
+      - /myapp/log
+      - /myapp/.git
+    environment:
+      - POSTGRES_HOST
+      - POSTGRES_PORT
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    depends_on:
+      - postgres
+    tty: true
+    stdin_open: true
+volumes:
+  postgresql-data:
+    driver: local
