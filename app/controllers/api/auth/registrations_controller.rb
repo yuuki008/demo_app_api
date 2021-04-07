@@ -8,9 +8,6 @@ module Api
 
       private
       def sign_up_params
-
-        binding.pry
-
         params.permit(:name, :email, :nickname, :password, :password_confirmation)
       end
 

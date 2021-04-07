@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  namespace :api do
-    mount_devise_token_auth_for 'User', at: 'auth', controllers: {
-      registrations: 'api/auth/registrations'
-    }
-  end
+  mount_devise_token_auth_for 'User', at: 'auth', controllers: {
+    registrations: 'api/auth/registrations'
+  }
 
   # resources :todos do
   #   collection do
