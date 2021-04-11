@@ -1,7 +1,13 @@
 class TodosController < ApplicationController
-  before_action :authenticase_user!
+  before_action :authenticate_user!, except: [:new, :create]
   before_action :set_new_todo, only: :create
 
+  def index
+    render :json => {
+      user: current_user,
+      user_sign_in: user_signed_in?,
+    }
+  end
 
   private
   def set_todo
