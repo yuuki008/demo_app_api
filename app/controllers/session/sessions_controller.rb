@@ -7,10 +7,6 @@ module Session
 
     private
 
-    def sign_in_params
-      params.permit(:email, :password)
-    end
-
     def render_create_success
       render json: {
         resource_data: resource_data,
