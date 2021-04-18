@@ -1,4 +1,4 @@
-git Rails.application.routes.draw do
+Rails.application.routes.draw do
   root 'application#debug'
 
   mount_devise_token_auth_for 'User', at: 'auth', controllers: {
