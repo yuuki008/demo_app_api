@@ -6,6 +6,8 @@
 !/log/.keep
 !/tmp/.keep
 /vendor
+.vagrant/
+*cloudimg-console.log
 
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
