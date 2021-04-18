@@ -7,9 +7,4 @@ Rails.application.routes.draw do
   }
 
   resources :todos, only: :index
-
-  # resources :todos do
-  #   collection do
-  #   end
-  # end
 end
